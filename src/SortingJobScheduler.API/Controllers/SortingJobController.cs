@@ -81,7 +81,11 @@ namespace SortingJobScheduler.API.Controllers
         {
             if (!numbers.Any())
             {
-                return ValidationProblem(detail: "Array of numbers should not be empty");
+                return ValidationProblem(new ValidationProblemDetails
+                {
+                    Detail = "Array of numbers should not be empty",
+                    Status = 400
+                });
             }
 
             var jobId = _sortingService.CreateJob(numbers);

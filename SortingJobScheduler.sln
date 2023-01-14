@@ -5,11 +5,17 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SortingJobScheduler.API", "src\SortingJobScheduler.API\SortingJobScheduler.API.csproj", "{43229C6D-F104-43E5-8D03-7E2C0D1637A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingJobScheduler", "src\SortingJobScheduler\SortingJobScheduler.csproj", "{78D2989A-3FEE-490F-8364-063D3342C2FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SortingJobScheduler", "src\SortingJobScheduler\SortingJobScheduler.csproj", "{78D2989A-3FEE-490F-8364-063D3342C2FA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EF8E7ACD-5E12-490F-B0AA-34861F50BC7B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{1B5CB17B-C668-401A-816F-B0DCDA3761DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingJobScheduler.API.UnitTests", "test\SortingJobScheduler.API.UnitTests\SortingJobScheduler.API.UnitTests.csproj", "{AB9CB1D1-4902-49E5-9CE8-7E1669A2FEAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingJobScheduler.Testing.Common", "test\SortingJobScheduler.Testing.Common\SortingJobScheduler.Testing.Common.csproj", "{37531150-3FF7-4A17-8611-457E69055B51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingJobScheduler.UnitTests", "test\SortingJobScheduler.UnitTests\SortingJobScheduler.UnitTests.csproj", "{BA92FF23-C413-4D8E-84F2-BF811124FD2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +31,18 @@ Global
 		{78D2989A-3FEE-490F-8364-063D3342C2FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78D2989A-3FEE-490F-8364-063D3342C2FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78D2989A-3FEE-490F-8364-063D3342C2FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB9CB1D1-4902-49E5-9CE8-7E1669A2FEAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB9CB1D1-4902-49E5-9CE8-7E1669A2FEAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB9CB1D1-4902-49E5-9CE8-7E1669A2FEAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB9CB1D1-4902-49E5-9CE8-7E1669A2FEAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37531150-3FF7-4A17-8611-457E69055B51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37531150-3FF7-4A17-8611-457E69055B51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37531150-3FF7-4A17-8611-457E69055B51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37531150-3FF7-4A17-8611-457E69055B51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA92FF23-C413-4D8E-84F2-BF811124FD2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA92FF23-C413-4D8E-84F2-BF811124FD2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA92FF23-C413-4D8E-84F2-BF811124FD2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA92FF23-C413-4D8E-84F2-BF811124FD2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +50,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{43229C6D-F104-43E5-8D03-7E2C0D1637A7} = {EF8E7ACD-5E12-490F-B0AA-34861F50BC7B}
 		{78D2989A-3FEE-490F-8364-063D3342C2FA} = {EF8E7ACD-5E12-490F-B0AA-34861F50BC7B}
+		{AB9CB1D1-4902-49E5-9CE8-7E1669A2FEAF} = {1B5CB17B-C668-401A-816F-B0DCDA3761DB}
+		{37531150-3FF7-4A17-8611-457E69055B51} = {1B5CB17B-C668-401A-816F-B0DCDA3761DB}
+		{BA92FF23-C413-4D8E-84F2-BF811124FD2E} = {1B5CB17B-C668-401A-816F-B0DCDA3761DB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0FAF2A2D-C621-40E4-B62A-29E00DFF953F}
