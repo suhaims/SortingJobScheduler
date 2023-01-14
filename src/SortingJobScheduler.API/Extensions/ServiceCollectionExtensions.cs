@@ -7,7 +7,7 @@ namespace SortingJobScheduler.API.Extensions
     {
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            services.AddTransient<ISortingService, SortingService>();
+            services.AddSingleton<ISortingService, SortingService>();
             return services;
         }
     }

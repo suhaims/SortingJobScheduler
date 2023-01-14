@@ -1,4 +1,7 @@
+using Microsoft.OpenApi.Models;
 using SortingJobScheduler.API.Extensions;
+using Swashbuckle.AspNetCore.Filters;
+using System.Reflection;
 
 namespace SortingJobScheduler.API
 {
@@ -13,7 +16,18 @@ namespace SortingJobScheduler.API
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Sorting Job API",
+                    Description = "An ASP.NET Core Web API for managing Sorting Jobs",
+                });
+
+                var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+            });
             builder.Services.AddServices();
 
             var app = builder.Build();
