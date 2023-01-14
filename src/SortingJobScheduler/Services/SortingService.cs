@@ -1,4 +1,5 @@
-﻿using SortingJobScheduler.Interfaces.Services;
+﻿using Microsoft.Extensions.Logging;
+using SortingJobScheduler.Interfaces.Services;
 using SortingJobScheduler.Models;
 using System;
 using System.Collections.Concurrent;
@@ -11,10 +12,12 @@ namespace SortingJobScheduler.Services
     public class SortingService: ISortingService
     {
         private readonly ConcurrentDictionary<string, SortingJob> _sortingJobs;
+        private readonly ILogger _logger;
 
-        public SortingService()
+        public SortingService(ILogger<SortingService> logger)
         {
             _sortingJobs = new ConcurrentDictionary<string, SortingJob>();
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public string CreateJob(IEnumerable<int> data)
