@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SortingJobScheduler.Interfaces.Services;
+using SortingJobScheduler.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,36 +10,35 @@ namespace SortingJobScheduler.API.Controllers
     [ApiController]
     public class SortingJobController : ControllerBase
     {
+        private readonly ISortingService _sortingService;
+
+        public SortingJobController(ISortingService sortingService)
+        {
+            _sortingService = sortingService ?? throw new ArgumentNullException(nameof(sortingService));
+        }
+
         // GET: api/<SortingJobController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult<IEnumerable<SortingJob>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var jobs = _sortingService.GetAllJobs();
+            return Ok(jobs);
         }
 
         // GET api/<SortingJobController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public ActionResult<SortingJob> Get(string id)
         {
-            return "value";
+            var job = _sortingService.GetJobById(id);
+            return Ok(job);
         }
 
         // POST api/<SortingJobController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<SortingJobCreateResponse> Post([FromBody] IEnumerable<int> numbers)
         {
-        }
-
-        // PUT api/<SortingJobController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<SortingJobController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            var jobId = _sortingService.CreateJob(numbers);
+            return CreatedAtAction("Get", new { id = jobId }, new SortingJobCreateResponse() { Id = jobId });
         }
     }
 }
