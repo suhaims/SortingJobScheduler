@@ -13,7 +13,7 @@ namespace SortingJobScheduler.API.UnitTests.Controllers
         [Theory]
         [AutoNSubstituteData]
         public void GetById_JobDoesNotExists_ShouldReturnNotFound(
-            [Frozen] ISortingService sortingService,
+            [Frozen] ISortingJobService sortingService,
             string jobId,
             SortingJobController sut)
         {
@@ -30,7 +30,7 @@ namespace SortingJobScheduler.API.UnitTests.Controllers
         [Theory]
         [AutoNSubstituteData]
         public void GetById_JobExists_ShouldReturnOKWithResult(
-            [Frozen] ISortingService sortingService,
+            [Frozen] ISortingJobService sortingService,
             string jobId,
             SortingJob sortingJob,
             SortingJobController sut)
@@ -65,7 +65,7 @@ namespace SortingJobScheduler.API.UnitTests.Controllers
         [Theory]
         [AutoNSubstituteData]
         public void CreateJob_ValidInputArray_ShouldCreateNewJob(
-            [Frozen] ISortingService sortingService,
+            [Frozen] ISortingJobService sortingService,
             List<int> inputArray,
             string jobId,
             SortingJobController sut)
@@ -86,7 +86,7 @@ namespace SortingJobScheduler.API.UnitTests.Controllers
         [Theory]
         [AutoNSubstituteData]
         public void GetAllJobs_JobsExists_ShouldReturnAllJobs(
-            [Frozen] ISortingService sortingService,
+            [Frozen] ISortingJobService sortingService,
             IEnumerable<SortingJob> sortingJobs,
             SortingJobController sut)
         {

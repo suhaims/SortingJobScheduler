@@ -15,11 +15,11 @@ namespace SortingJobScheduler.API.Controllers
     [ApiController]
     public class SortingJobController : ControllerBase
     {
-        private readonly ISortingService _sortingService;
+        private readonly ISortingJobService _sortingService;
         private readonly ILogger _logger;
 
         public SortingJobController(
-            ISortingService sortingService, 
+            ISortingJobService sortingService, 
             ILogger<SortingJobController> logger)
         {
             _sortingService = sortingService ?? throw new ArgumentNullException(nameof(sortingService));
@@ -89,6 +89,8 @@ namespace SortingJobScheduler.API.Controllers
             }
 
             var jobId = _sortingService.CreateJob(numbers);
+            _sortingService.QueueJob(jobId);
+
             return CreatedAtAction("Get", new { id = jobId }, new SortingJobCreateResponse() { Id = jobId });
         }
     }

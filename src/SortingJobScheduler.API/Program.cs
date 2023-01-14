@@ -1,5 +1,6 @@
 using Microsoft.OpenApi.Models;
 using SortingJobScheduler.API.Extensions;
+using SortingJobScheduler.API.HostedServices;
 using Swashbuckle.AspNetCore.Filters;
 using System.Reflection;
 
@@ -29,6 +30,7 @@ namespace SortingJobScheduler.API
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });
             builder.Services.AddServices();
+            builder.Services.AddHostedService<SortingJobHostedService>();
 
             var app = builder.Build();
 

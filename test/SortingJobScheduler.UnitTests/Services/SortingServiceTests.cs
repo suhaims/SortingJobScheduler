@@ -1,75 +1,52 @@
-﻿using SortingJobScheduler.Enums;
-using SortingJobScheduler.Services;
+﻿using SortingJobScheduler.Services;
+using SortingJobScheduler.Testing.Common.Attributes;
 
 namespace SortingJobScheduler.UnitTests.Services
 {
     public class SortingServiceTests
     {
-        [Fact]
-        public void CreateJob_JobCreated_ShouldBeAbleToRetrieveById()
+        [Theory]
+        [AutoNSubstituteData]
+        public void SortNumbers_EmptyInput_ShouldReturnEmptyArray(SortingService sut)
         {
             // Arrange
-            var sut = new SortingService();
-            var unsortedArray = new List<int> { 10, 5, 9, 22 };
+            var unsortedArray = new List<int>();
 
             // Act
-            var jobId = sut.CreateJob(unsortedArray);
-            var job = sut.GetJobById(jobId);
+            var result = sut.SortNumbers(unsortedArray);
 
             // Asset
-            Assert.Equal(jobId, job.Id);
-            Assert.Equal(unsortedArray, job.Data);
+            Assert.Empty(result);
         }
 
-        [Fact]
-        public void CreateJob_JobCreated_InitialStatusShouldBePending()
+        [Theory]
+        [AutoNSubstituteData]
+        public void SortNumbers_UnsortedArrayInput_ShouldReturnSortedArray(SortingService sut)
         {
             // Arrange
-            var sut = new SortingService();
-            var unsortedArray = new List<int> { 10, 5, 9, 22 };
+            var unsortedArray = new List<int>() { 10, 5, 3, 8, 15, 9 };
 
             // Act
-            var jobId = sut.CreateJob(unsortedArray);
-            var job = sut.GetJobById(jobId);
+            var result = sut.SortNumbers(unsortedArray);
 
             // Asset
-            Assert.Equal(JobStatus.Pending, job.Status);
-            Assert.Equal(0, job.Duration);
+            Assert.Equal(unsortedArray.Count, result.Count());
+            Assert.Equal(new List<int>() { 3, 5, 8, 9, 10, 15 }, result);
         }
 
-        [Fact]
-        public void CreateMultipleJobs_JobsCreated_ShouldBeAbleToRetrieveById()
+        [Theory]
+        [AutoNSubstituteData]
+        public void SortNumbers_UnsortedArrayWithDuplicatesInput_ShouldReturnSortedArray(SortingService sut)
         {
             // Arrange
-            var sut = new SortingService();
-            var unsortedArray = new List<int> { 10, 5, 9, 22 };
+            var unsortedArray = new List<int>() { 10, 5, 3, 8, 15, 3, 5, 9 };
 
             // Act
-            var jobAId = sut.CreateJob(unsortedArray);
-            var jobBId = sut.CreateJob(unsortedArray);
-            
-            var jobB = sut.GetJobById(jobBId);
+            var result = sut.SortNumbers(unsortedArray);
 
             // Asset
-            Assert.Equal(jobBId, jobB.Id);
-            Assert.Equal(unsortedArray, jobB.Data);
-        }
-
-        [Fact]
-        public void CreateMultipleJobs_JobsCreated_ShouldBeAbleToRetrieveAllJobs()
-        {
-            // Arrange
-            var sut = new SortingService();
-            var unsortedArray = new List<int> { 10, 5, 9, 22 };
-
-            // Act
-            sut.CreateJob(unsortedArray);
-            sut.CreateJob(unsortedArray);
-
-            var jobs = sut.GetAllJobs();
-
-            // Asset
-            Assert.Equal(2, jobs.Count());
+            Assert.Equal(unsortedArray.Count, result.Count());
+            Assert.Equal(new List<int>() { 3, 3, 5, 5, 8, 9, 10, 15 }, result);
         }
     }
 }
