@@ -95,7 +95,7 @@ namespace SortingJobScheduler.Services
                 {
                     stopwatch.Stop();
                     sortingJob.Duration = stopwatch.ElapsedMilliseconds;
-                    _logger.LogInformation($"Sorting job with '{jobId}' completed in {sortingJob.Duration}ms");
+                    _logger.LogInformation($"Sorting job with id '{jobId}' completed in {sortingJob.Duration}ms");
                 }
             }
             else

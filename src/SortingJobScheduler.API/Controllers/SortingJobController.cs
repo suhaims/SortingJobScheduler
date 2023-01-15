@@ -34,6 +34,7 @@ namespace SortingJobScheduler.API.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<SortingJob>> Get()
         {
+            _logger.LogInformation($"GET All Jobs API call received at {DateTime.Now}");
             var jobs = _sortingService.GetAllJobs();
             _logger.LogInformation($"Found {jobs.Count()} sorting jobs");
 
@@ -52,6 +53,7 @@ namespace SortingJobScheduler.API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<SortingJob> Get([Required]string id)
         {
+            _logger.LogInformation($"GET Job By Id API call received at {DateTime.Now}, Id: {id}");
             var job = _sortingService.GetJobById(id);
             if (job == null)
             {
@@ -82,6 +84,8 @@ namespace SortingJobScheduler.API.Controllers
         [SwaggerResponseHeader(StatusCodes.Status201Created, "location", "string", "Location of the newly created Sorting Job")]
         public ActionResult<SortingJobCreateResponse> Post([FromBody] IEnumerable<int> numbers)
         {
+            _logger.LogInformation($"POST Create Job API call received at {DateTime.Now}");
+
             if (!numbers.Any())
             {
                 return ValidationProblem(new ValidationProblemDetails
