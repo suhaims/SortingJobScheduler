@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Threading;
 using SortingJobScheduler.Interfaces.Services;
 
 namespace SortingJobScheduler.Services

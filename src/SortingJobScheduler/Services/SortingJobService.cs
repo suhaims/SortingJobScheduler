@@ -54,6 +54,8 @@ namespace SortingJobScheduler.Services
 
         public void QueueJob(string jobId)
         {
+            _logger.LogInformation($"Adding a job with Id '{jobId}' to the queue");
+
             _sortingJobQueue.Enqueue(async cancellationToken =>
             {
                 await ExecuteJobAsync(jobId, cancellationToken);

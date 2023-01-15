@@ -35,6 +35,8 @@ namespace SortingJobScheduler.API.Controllers
         public ActionResult<IEnumerable<SortingJob>> Get()
         {
             var jobs = _sortingService.GetAllJobs();
+            _logger.LogInformation($"Found {jobs.Count()} sorting jobs");
+
             return Ok(jobs);
         }
 
@@ -53,6 +55,7 @@ namespace SortingJobScheduler.API.Controllers
             var job = _sortingService.GetJobById(id);
             if (job == null)
             {
+                _logger.LogInformation($"Could not find a job with id '{id}'");
                 return NotFound();
             }
 

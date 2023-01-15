@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using SortingJobScheduler.API.Extensions;
 using SortingJobScheduler.API.HostedServices;
@@ -40,6 +42,29 @@ namespace SortingJobScheduler.API
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseExceptionHandler(configure =>
+            {
+                configure.Run(async context =>
+                {
+                    var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+                    var ex = exceptionHandlerPathFeature?.Error;
+                    string title;
+
+                    (context.Response.StatusCode, title) = ex switch
+                    {
+                        _ => (StatusCodes.Status500InternalServerError, "Internal server error")
+                    };
+
+                    await context.Response.WriteAsJsonAsync(
+                        new ProblemDetails()
+                        {
+                            Title = title,
+                            Status = context.Response.StatusCode,
+                            Detail = ex?.Message
+                        }).ConfigureAwait(false);
+                });
+            });
 
             app.UseHttpsRedirection();
 
