@@ -21,6 +21,12 @@ namespace SortingJobScheduler.API.HostedServices
             await ProcessWorkItemAsync(stoppingToken);
         }
 
+        public override async Task StopAsync(CancellationToken stoppingToken)
+        {
+            _logger.LogInformation("SortingJobHostedService is stopping.");
+            await base.StopAsync(stoppingToken);
+        }
+
         private async Task ProcessWorkItemAsync(CancellationToken cancellationToken)
         {
             while (!cancellationToken.IsCancellationRequested)
