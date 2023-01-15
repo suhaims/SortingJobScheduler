@@ -1,5 +1,5 @@
 # SortingJobScheduler
----
+
 ## Description
 
 SortingJobScheduler is a C# .NET Web API application developed to queue sorting jobs and track their progress. The solution is exposed via REST API, which makes it possible for clients to enqueue an array of numbers to be sorted in the background and to query the state of any previously enqueued job.
@@ -10,13 +10,11 @@ SortingJobScheduler is a C# .NET Web API application developed to queue sorting 
 * The client can retrieve an overview of all jobs (pending, completed and failed jobs)
 * The client can retrieve a specific job by its ID, including the output (sorted array) if the job has completed
 
----
 
 ## Technologies
 * C#
 * .NET Core
 
----
 
 ## APIs
 
@@ -51,7 +49,6 @@ SortingJobScheduler is a C# .NET Web API application developed to queue sorting 
 	- `4`: Failed.
 - `data`: The sorted sequence if the status is `3`. Unsorted sequence if the status is `1` or `2`.
 
----
 
 ## Architectural Decisions
 
@@ -65,7 +62,6 @@ SortingJobScheduler is a C# .NET Web API application developed to queue sorting 
 The APIs are not authenticated, so any users can access the API. 
 Added some time delays in the sorting operation, which allows the user to see the job status before the job completes.
 
----
 
 ## Usage
 
@@ -86,5 +82,3 @@ The unit tests can be executed from Visual Studio Test Explorer or by running th
 ```cmd
 dotnet test
 ```
-
----
