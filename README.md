@@ -73,7 +73,7 @@ dotnet build
 dotnet run
 ```
 
-The SwaggerUI is enabled, so the users can easily test the APIs from the launch page(https://localhost:<port>/swagger).
+The SwaggerUI is enabled, so the users can easily test the APIs from the launch page(https://localhost:{port}/swagger).
 
 ### Running Unit Tests
 
